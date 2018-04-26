@@ -1,0 +1,151 @@
+# 即时通讯 redis 版
+# key-value 设计
+
+配置表
+type : hash
+key : config
+value : 
+
+user_id : 用户的id 10000开始
+group_id : 群的id 10000开始
+
+reids-shell:
+
+hset config user_id 10000
+hset config group_id 10000
+
+用户表
+type : hash
+key : user|user_id
+value : 
+
+{	
+	user_id :  用户ID 自增
+	name : 名字 
+	password : md5(密码)
+	sex : 性别
+	birthday : 生日
+	email : 邮箱
+	phnoe : 手机
+	face : 头像
+}
+
+
+用户登陆表
+type : hash
+key : user|login
+
+{
+	session_id:user_id
+}
+
+
+fd-用户表
+type : hash
+key : fd|user
+
+{
+	fd:user_id
+}
+
+用户-fd表
+type : hash
+key : user|fd
+
+{
+	user_id:fd
+}
+
+
+好友表
+type : set
+key : user|user_id|friends
+
+user|1|friends [2]
+user|2|friends [1]
+
+
+
+未读聊天记录表
+type : zset
+key : chat|user|unread|user_id
+score : from_user_id
+value : json{
+	from_user_id : 来源ID
+	to_user_id : 目标ID
+	content: 内容
+	add_time : 时间
+}
+
+
+好友聊天记录表
+type : zset
+key : chat|user|201704|from_user_id|to_user_id
+
+score : 20170401
+value : json{
+	from_user_id : 来源ID
+	to_user_id : 目标ID
+	content: 内容
+	add_time : 时间
+}
+
+
+
+用户创建的群表
+type : hash
+key : group|group_id
+
+value : 
+
+{	
+	id :  群ID 自增
+	user_id : 用户id
+	name : 名字 
+	add_time : 添加时间
+}
+
+
+用户创建的群表
+type : set
+key : group|create|user_id
+
+value : group_id
+
+
+用户加入的群表
+type : set
+key : group|add|user_id
+
+value : group_id
+
+
+群里的用户表
+type : set
+key : group|in|group_id
+
+value : user_id
+
+
+未读群聊天记录表
+type : zset
+key : chat|group|unread|user_id
+score : group_id
+value : json{
+	group_id : 群ID
+	user_id : 用户ID
+	content: 内容
+	add_time : 时间
+}
+
+群聊天记录表
+type : zset
+key : chat|group|201704|group_id
+
+score : 20170401
+value : json{
+	group_id : 群ID
+	user_id : 用户ID
+	content: 内容
+	add_time : 时间
+}
