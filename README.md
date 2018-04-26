@@ -1,5 +1,5 @@
 # Lchat
-即时通讯
+即时通讯 php+swoole+websocket+redis
 
 |Author|white|
 |---|---
@@ -18,7 +18,6 @@ redis  | >= 2 |
 
 ### 服务端
 
-
 	path/php server/Server.php 
 
 
@@ -32,6 +31,7 @@ redis  | >= 2 |
 2. 添加好友，好友聊天
 3. 创建群，加入群，群聊
 4. 未读消息，聊天记录存储
+
 
 ### 效果图
 ![即时聊天](https://github.com/godlovesme/Lchat/raw/master/image/1.png "即时聊天")
