@@ -29,8 +29,7 @@ redis  | >= 2 |
 
 
 ### 效果图
-
-
+![1](https://github.com/godlovesme/Lchat/raw/master/image/1.png "1")
 
 
 
