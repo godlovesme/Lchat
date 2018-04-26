@@ -19,13 +19,13 @@ redis  | >= 2 |
 ### 服务端
 
 
-path/php server/Server.php 
+	path/php server/Server.php 
 
 
 ### 客户端
 
-注册：reg.php
-登陆：login.php => 主页：index.php
+	注册：reg.php
+	登陆：login.php => 主页：index.php
 
 
 ### 效果图
